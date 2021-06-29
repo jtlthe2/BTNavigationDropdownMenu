@@ -248,7 +248,7 @@ open class BTNavigationDropdownMenu: UIView {
         - title: A string to define title to be displayed.
         - items: The array of items to select
      */
-    public convenience init(navigationController: UINavigationController? = nil, containerView: UIView = UIApplication.shared.keyWindow!, title: String, items: [String]) {
+    public convenience init(navigationController: UINavigationController? = nil, containerView: UIView = (UIApplication.value(forKey: "sharedApplication") as! UIApplication).keyWindow!, title: String, items: [String]) {
 
         self.init(navigationController: navigationController, containerView: containerView, title: BTTitle.title(title), items: items)
     }
@@ -265,9 +265,9 @@ open class BTNavigationDropdownMenu: UIView {
         - title: An enum to define title to be displayed, can be a string or index of items.
         - items: The array of items to select
      */
-    public init(navigationController: UINavigationController? = nil, containerView: UIView = UIApplication.shared.keyWindow!, title: BTTitle, items: [String]) {
+    public init(navigationController: UINavigationController? = nil, containerView: UIView = (UIApplication.value(forKey: "sharedApplication") as! UIApplication).keyWindow!, title: BTTitle, items: [String]) {
         // Key window
-        guard let window = UIApplication.shared.keyWindow else {
+        guard let window = (UIApplication.value(forKey: "sharedApplication") as! UIApplication).keyWindow else {
             super.init(frame: CGRect.zero)
             return
         }
@@ -339,10 +339,9 @@ open class BTNavigationDropdownMenu: UIView {
         self.setupDefaultConfiguration()
 
         // Init table view
-        let tabBarHeight = self.navigationController?.tabBarController?.tabBar.bounds.size.height ?? 0
         let navBarHeight = self.navigationController?.navigationBar.bounds.size.height ?? 0
-        let statusBarHeight = UIApplication.shared.statusBarFrame.height
-        self.tableView = BTTableView(frame: CGRect(x: menuWrapperBounds.origin.x, y: menuWrapperBounds.origin.y + 0.5, width: menuWrapperBounds.width, height: menuWrapperBounds.height + 300 - tabBarHeight - navBarHeight - statusBarHeight), items: items, title: titleToDisplay, configuration: self.configuration)
+        let statusBarHeight = (UIApplication.value(forKey: "sharedApplication") as! UIApplication).statusBarFrame.height
+        self.tableView = BTTableView(frame: CGRect(x: menuWrapperBounds.origin.x, y: menuWrapperBounds.origin.y + 0.5, width: menuWrapperBounds.width, height: menuWrapperBounds.height + 300 - navBarHeight - statusBarHeight), items: items, title: titleToDisplay, configuration: self.configuration)
 
         self.tableView.selectRowAtIndexPathHandler = { [weak self] (indexPath: Int) -> () in
             guard let selfie = self else {

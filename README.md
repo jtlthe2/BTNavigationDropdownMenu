@@ -1,3 +1,5 @@
+# This fork is a hacky workaround for Xcode 12.5 projects installing this package through Cocoapods with "APPLICATION_EXTENSION_API_ONLY" set to true.
+
 ![alt tag](https://github.com/PhamBaTho/BTNavigationDropdownMenu/blob/master/Assets/BTNavigationDropdownLogo.png)
 
 [![Pod Version](https://img.shields.io/cocoapods/v/BTNavigationDropdownMenu.svg?style=flat)](http://cocoadocs.org/docsets/BTNavigationDropdownMenu/)
